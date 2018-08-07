@@ -1,6 +1,8 @@
 package com.stanzione.jetpackfeatures;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -35,17 +37,18 @@ public class MainActivity extends AppCompatActivity {
         ageTextView = findViewById(R.id.ageTextView);
         increaseAgeButton = findViewById(R.id.increaseAgeButton);
 
-        firstNameTextView.setText(user.getFirstName());
-        lastNameTextView.setText(user.getLastName());
-        ageTextView.setText(String.valueOf(user.getAge()));
+        user.getFirstName().observe(this, firstNameTextView::setText);
+
+        user.getLastName().observe(this, lastNameTextView::setText);
+
+        user.getAge().observe(this, integer -> ageTextView.setText(String.valueOf(integer)));
 
         increaseAgeButton.setOnClickListener((view -> increaseAge()));
 
     }
 
     private void increaseAge(){
-        user.setAge(user.getAge()+1);
-        ageTextView.setText(String.valueOf(user.getAge()));
+        user.setAge(user.getAge().getValue()+1);
     }
 
 }
