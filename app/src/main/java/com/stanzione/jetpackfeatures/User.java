@@ -1,10 +1,17 @@
 package com.stanzione.jetpackfeatures;
 
-public class User {
+import android.arch.lifecycle.ViewModel;
+
+public class User extends ViewModel{
 
     private String firstName;
     private String lastName;
     private int age;
+
+    public User(){
+        this.firstName = "Leandro";
+        this.lastName = "Stanzione";
+    }
 
     public User(String firstName, String lastName){
         this.firstName = firstName;

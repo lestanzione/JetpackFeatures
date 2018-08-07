@@ -1,5 +1,6 @@
 package com.stanzione.jetpackfeatures;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createUser(){
-        user = new User("Leandro", "Stanzione");
+        user = ViewModelProviders.of(this).get(User.class);
     }
 
     private void setupUi(){
